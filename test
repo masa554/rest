@@ -1,0 +1,93 @@
+POST /signup
+{
+  "user_id": "TaroYamada",
+  "password": "PaSSwd4TY",
+},
+{
+"code":200
+"message": "Account successfully created",
+"user": {
+  "user_id": "TaroYamada",
+  "nickname": "TaroYamada"
+}
+},
+{
+ "code":400
+ "message": "Account creation failed",
+ "cause": "required user_id and password"
+},
+{
+ "code":400
+ "message": "Account creation failed",
+ "cause": "already same user_id is used"
+}
+
+GET /users/{user_id}
+{
+"code":200
+"message": "User details by user_id",
+"user": {
+  "user_id": "TaroYamada",
+  "nickname": "たろー",
+  "comment": "僕は元気です"
+  }
+},
+{
+"message": "User details by user_id",
+"user": {
+  "user_id": "user_id",
+  "nickname": "nickname"
+}
+},
+{
+"code":404
+"message":"No User found" 
+},
+{
+"code":401"
+"message":"Authentication Faild" 
+}
+
+PATCH /users/{user_id}
+{
+"code":200
+"message": "User successfully updated",
+"recipe": [
+  {
+    "nickname": "たろー",
+    "comment": "僕は元気です"
+  }
+]
+},
+{
+"code":404
+"message":"No User found" 
+},
+{
+  "code":400
+  "message": "User updation failed",
+  "cause": "required nickname or comment"
+},
+{
+  "code":400
+  "message": "User updation failed",
+  "cause": "not updatable user_id and password"
+},
+{
+"code":401
+"message":"Authentication Faild" 
+},
+{
+ "code":403
+ "message": "No Permission for Update"
+}
+
+Post /close
+{
+”code":200
+"message": "Account and user successfully removed" 
+},
+{
+"code":401
+"message":"Authentication Faild" 
+}
